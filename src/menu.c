@@ -23,6 +23,7 @@
 #include "window.h"
 #include "config/overworld.h"
 #include "constants/songs.h"
+#include "field_mugshot.h"
 
 struct MenuInfoIcon
 {
@@ -149,6 +150,7 @@ void InitStandardTextBoxWindows(void)
     sMapNamePopupWindowId = WINDOW_NONE;
     if (OW_POPUP_GENERATION == GEN_5)
         sSecondaryPopupWindowId = WINDOW_NONE;
+    SetFieldMugshotSpriteId(WINDOW_NONE); // its the same as SPRITE_NONE
 }
 
 void FreeAllOverworldWindowBuffers(void)

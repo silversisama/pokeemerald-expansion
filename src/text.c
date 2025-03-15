@@ -12,6 +12,7 @@
 #include "menu.h"
 #include "dynamic_placeholder_text_util.h"
 #include "fonts.h"
+#include "field_mugshot.h"
 
 static u16 RenderText(struct TextPrinter *);
 static u32 RenderFont(struct TextPrinter *);
@@ -1213,6 +1214,23 @@ static u16 RenderText(struct TextPrinter *textPrinter)
             case EXT_CTRL_CODE_ENG:
                 textPrinter->japanese = FALSE;
                 return RENDER_REPEAT;
+            case EXT_CTRL_CODE_CREATE_MUGSHOT:
+            {
+                u32 id, emote;
+                id = *textPrinter->printerTemplate.currentChar;
+                textPrinter->printerTemplate.currentChar++;
+                emote = *textPrinter->printerTemplate.currentChar;
+                textPrinter->printerTemplate.currentChar++;
+                _CreateFieldMugshot(id, emote);
+                if (IsFieldMugshotActive())
+                {
+                    gSprites[GetFieldMugshotSpriteId()].data[0] = TRUE;
+                }
+            }
+                return RENDER_REPEAT;
+            case EXT_CTRL_CODE_DESTROY_MUGSHOT:
+                RemoveFieldMugshot();
+                return RENDER_REPEAT;            
             }
             break;
         case CHAR_PROMPT_CLEAR:
@@ -1411,6 +1429,8 @@ static u32 UNUSED GetStringWidthFixedWidthFont(const u8 *str, u8 fontId, u8 lett
             case EXT_CTRL_CODE_FILL_WINDOW:
             case EXT_CTRL_CODE_JPN:
             case EXT_CTRL_CODE_ENG:
+            case EXT_CTRL_CODE_CREATE_MUGSHOT:
+            case EXT_CTRL_CODE_DESTROY_MUGSHOT:
             default:
                 break;
             }
