@@ -111,6 +111,7 @@ static bool8 StartMenuSafariZoneRetireCallback(void);
 static bool8 StartMenuLinkModePlayerNameCallback(void);
 static bool8 StartMenuBattlePyramidRetireCallback(void);
 static bool8 StartMenuBattlePyramidBagCallback(void);
+static bool8 StartMenuUiMenuCallback(void);
 static bool8 StartMenuDebugCallback(void);
 static bool8 StartMenuDexNavCallback(void);
 static bool8 QuestMenuCallback(void);
@@ -190,6 +191,7 @@ static const struct WindowTemplate sWindowTemplate_PyramidPeak = {
     .baseBlock = 0x8
 };
 
+static const u8 sText_NewMenu[] = _("My Menu");
 static const u8 sText_MenuDebug[] = _("DEBUG");
 
 static const u8 sText_QuestMenu[] = _("QUESTS");
