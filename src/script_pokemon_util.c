@@ -278,8 +278,8 @@ u32 BirchCase_GiveMonParameterized(u16 species, u8 level, u16 item, u8 ball, u8 
     SetMonData(&mon, MON_DATA_GIGANTAMAX_FACTOR, &ggMaxFactor);
 
     // tera type
-    if (teraType >= NUMBER_OF_MON_TYPES)
-        teraType = gSpeciesInfo[species].types[0];
+    if (teraType == TYPE_NONE || teraType == TYPE_MYSTERY || teraType >= NUMBER_OF_MON_TYPES)
+        teraType = GetTeraTypeFromPersonality(&mon);
     SetMonData(&mon, MON_DATA_TERA_TYPE, &teraType);
 #endif
 
