@@ -334,6 +334,7 @@ static void DoStandardWildBattle(bool32 isDouble)
         VarSet(VAR_TEMP_E, 0);
         gBattleTypeFlags |= BATTLE_TYPE_PYRAMID;
     }
+
     CreateBattleStartTask(GetWildBattleTransition(), 0);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
@@ -568,6 +569,7 @@ static void DowngradeBadPoison(void)
             SetMonData(&gPlayerParty[i], MON_DATA_STATUS, &status);
     }
 }
+
 
 static void CB2_EndWildBattle(void)
 {

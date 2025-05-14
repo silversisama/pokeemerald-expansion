@@ -131,7 +131,10 @@ static u32 GetWildAiFlags(void)
 
     if (IsDoubleBattle())
         avgLevel = (GetMonData(&gEnemyParty[0], MON_DATA_LEVEL) + GetMonData(&gEnemyParty[1], MON_DATA_LEVEL)) / 2;
-
+    if (check_flag(FLAG_NEXT_ENCOUNTER_FLEES)) {
+        clear_flag(FLAG_NEXT_ENCOUNTER_FLEES);
+        flags = AI_Roaming; 
+    };
     flags |= AI_FLAG_CHECK_BAD_MOVE;
     if (avgLevel >= 20)
         flags |= AI_FLAG_CHECK_VIABILITY;
